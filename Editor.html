@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>Insert title here</title>
+</head>
+<body>
+	
+
+	<form action="add_article" method="post">
+		标题:<input type="text" name="title"><br /><br />
+		图片:<input type="text" name="image"><br />
+		栏目:
+		<select name = "columnx">
+			<option value="0">术前必读</option>
+			<option value="1">热点</option>
+			<option value="2">放化疗</option>
+			<option value="3">饮食锻炼</option>
+			<option value="4">抗癌明星</option>
+			<option value="5">常见问题</option>
+		</select>
+		类型:
+		<select name="type">
+			<option value="0">通用</option>
+			<option value="1">胃</option>
+			<option value="2">肝</option>
+			<option value="3">肺</option>
+			<option value="4">结肠</option>
+			<option value="5">直肠</option>
+			<option value="6">乳腺</option>
+			<option value="7">胰腺</option>
+			<option value="8">胆囊</option>
+			<option value="9">淋巴</option>
+			<option value="10">白血病</option>
+			<option value="11">黑色素瘤</option>
+			<option value="12">前列腺</option>
+			<option value="13">睾丸</option>
+			<option value="14">卵巢</option>
+			<option value="15">舌</option>
+			<option value="16">脑</option>
+		</select>
+		<br />
+		<textarea id="article" name="article"></textarea>
+		<input type="submit" value="提交" >
+</form>
+	<script charset="utf-8" src="editor/kindeditor-all.js"></script>
+<script charset="utf-8" src="editor/lang/zh-CN.js"></script>
+<script>
+        KindEditor.ready(function(K) {
+                window.editor = K.create('#article');
+        });
+        var options = {
+                cssPath : '/css/index.css',
+                filterMode : true
+        };
+        var editor = K.create('textarea[name="content"]', options);
+</script>
+	
+</body>
+</html>
