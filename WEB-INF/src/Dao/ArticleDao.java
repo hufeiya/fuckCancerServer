@@ -11,6 +11,8 @@ public class ArticleDao {
 	private static final String GET_ARTICLE_BY_ID = "SELECT * FROM article WHERE ID=?";
 	private static final String GET_ARTICLE_FROM_ID = "SELECT * FROM article WHERE ID>? AND "
 			+ "type=? AND columnx=? AND groups=? ";
+	private static final String GET_ARTICLE_FROM_ID_WITHOUT_GROUP = "SELECT * FROM article WHERE ID>? AND "
+			+ "type=? AND columnx=?  ";
 	private static final String INSERT_ARTICLE = " INSERT INTO article (title,type,image,columnx,groups) VALUES(?,?,?,?,?)";
 	private static final String INSERT_ARTICLE_ENTITY =" INSERT INTO articleEntity (details,author) VALUES (?,?)";
 
@@ -115,6 +117,31 @@ public class ArticleDao {
 					beans.add(article);
 				}
 			}
+			return beans;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return null;
+		}
+	}
+	public List<ArticleBean> getArticlesFromIdWithoutGroups(int id,int type,int columnx){
+		init();
+		try {
+			List<ArticleBean> beans = new ArrayList<ArticleBean>();
+			PreparedStatement pstmt = dbConnection.prepareStatement(GET_ARTICLE_FROM_ID_WITHOUT_GROUP);
+			pstmt.setInt(1, id);
+			pstmt.setInt(2, type);
+			pstmt.setInt(3, columnx);
+			ResultSet rst = pstmt.executeQuery();
+			while(rst.next()){
+				ArticleBean article = new ArticleBean();
+				article.setId(rst.getInt("id"));
+				article.setTitle(rst.getString("title"));
+				article.setType(type);
+				article.setColumnx(columnx);
+				article.setImage(rst.getString("image"));
+				beans.add(article);
+			}
+
 			return beans;
 		} catch (Exception e) {
 			// TODO: handle exception

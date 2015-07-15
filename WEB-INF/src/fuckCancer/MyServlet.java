@@ -30,6 +30,14 @@ public class MyServlet extends HttpServlet {
         if(groups == -88){//It's the first page the app  need.
         	SingleGroupBean sgb = getCurrentMaxGroupNumberAndNumberOfThisGroup(columnx, type);
         	groups = sgb.getSum();
+        }else if (groups == -99){//It's pull to refresh 
+        	ArticleDao articleDao = new ArticleDao();
+            List<ArticleBean> articles = articleDao.getArticlesFromIdWithoutGroups(id,type,columnx);
+            final Gson gson = new Gson();
+            final String json = gson.toJson(articles);
+            out.print(json);
+            out.close();
+            return;
         }else if(groups < 0){
         	return;
         }
