@@ -108,7 +108,7 @@ public class AddArticleServlet extends HttpServlet {
 	 	
 	 	return gb;
 	}
-	public void saveGroupBean(GroupBean gb){//a test to create the original info.txt
+	public void saveGroupBean(GroupBean gb){
 		    try{
 		    	ServletContext context = getServletContext();
 		    	File file = new File(context.getRealPath("/")

@@ -42,6 +42,14 @@
     <servlet-name>getgroupinfo</servlet-name>
     <servlet-class>fuckCancer.GetGroupInfoServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>update</servlet-name>
+    <servlet-class>fuckCancer.UpdateInfoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>update</servlet-name>
+    <url-pattern>/update</url-pattern>
+  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>getgroupinfo</servlet-name>
     <url-pattern>/getgroupinfo</url-pattern>
