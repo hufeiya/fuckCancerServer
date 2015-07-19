@@ -104,6 +104,7 @@ public class ArticleDao {
 			}
 			//if this group contain too few element,add the former group
 			if (beans.size() < 10 && (groups > 0)){
+				List<ArticleBean> tempBeans = new ArrayList<ArticleBean>();
 				pstmt.setInt(4, groups-1);
 				ResultSet rst2 = pstmt.executeQuery();
 				while(rst2.next()){
@@ -114,8 +115,9 @@ public class ArticleDao {
 					article.setColumnx(columnx);
 					article.setImage(rst2.getString("image"));
 					article.setGroups(groups-1);
-					beans.add(article);
+					tempBeans.add(article);
 				}
+				beans.addAll(0, tempBeans);
 			}
 			return beans;
 		} catch (Exception e) {
